@@ -1,0 +1,34 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { Image } from "astro:assets";
+
+type Props = HTMLAttributes<"a">;
+
+const { frontmatter, url, href, class: className, ...props } = Astro.props;
+
+const { title, date, author, image, description, category } = frontmatter;
+
+const { pathname } = Astro.url;
+const isActive = href === pathname || href === pathname.replace(/\/$/, "");
+
+---
+
+<article class="card">
+  <a href={url} aria-hidden="true" tabindex="-1">
+    <h1>Image here</h1>
+    <!-- <Image
+      src={image.src}
+      alt={image.alt}
+      width="400"
+      height="250"
+      format="webp"
+      fit="cover"
+      quality={80}
+      aspectRatio="4:1"
+    /> -->
+  </a>
+  <div class="content">
+    <p>{description}</p>
+    <!-- <Link href={url} text="Read Post" style="secondary" /> -->
+  </div>
+</article>
